@@ -1,9 +1,9 @@
-# Rogue-Pinball#
+# Rogue-Pinball
 Classic Pinball game made with Rogue Engine, a ThreeJS based game engine created by @BeardScript
 
-# <video alt="pinballRogueEngine" src="https://i.imgur.com/sCqaCxW.mp4">
+![pinballRogueDemo](https://user-images.githubusercontent.com/3352700/146996861-5a89cd3e-ae4b-47a8-ad77-f260c463951f.gif)
 
-# TODO#
+# TODO
 
  - Mobile version
  - CannonJS Trimesh colliders are awesome and super easy to use. However, for collisions with high speed, basic shapes works better. I have to add some basic-collider to certain areas where the ball sometimes gets stuck.
