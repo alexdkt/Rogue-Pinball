@@ -1,0 +1,159 @@
+<div id="pinball-ui">
+    <div id="start-game-ui" class="menu">
+        <div id="game-title">Rogue Pinball</div>
+        <img src="./Static/button-Play.png" id="start-game-button" class="clickable"></img>
+    </div>
+
+    <div id="in-game-ui">
+        <div class="flex-container">
+            <div id="score-container">
+                <div id="score-title-label"></div>
+                <div id="score-label">0</div>
+            </div>
+            <div id="balls-container">
+                <img src="./Static/ball-menu-icon.png" id="balls-icon"></img>
+                <div id="balls-label"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="vignette-overlay"></div>
+
+<style>
+    #pinball-ui {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-size: 30px;
+        color: white;
+        height: 100%;
+        margin: 0;
+    }
+
+    #pinball-ui>div {
+        display: none;
+    }
+
+    #game-title {
+        position: relative;
+        font-size: 90px;
+        color: royalblue;
+        margin: 0;
+        text-shadow: 2px 2px rgb(255 255 255);
+    }
+
+    .menu {
+        position: absolute;
+        text-align: center;
+        align-content: space-around;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background-color: #e5e5f7;
+        opacity: 1;
+        background-image: url("./Static/ball-background-icon.png");
+        /* radial-gradient(#444cf7 1.6px, #e5e5f7 1.6px);*/
+        background-size: 32px 32px;
+        animation: animatedBackground 500s linear infinite;
+    }
+
+    @keyframes animatedBackground {
+        from {
+            background-position: 0 0;
+        }
+
+        /*use negative width if you want it to flow right to left else and positive for left to right*/
+        to {
+            background-position: -10000px 0;
+        }
+    }
+
+
+
+    #start-game-button {
+        position: relative;
+        display: block;
+        width: 20vh;
+        transition: 0.3s;
+    }
+
+    #start-game-button:hover {
+        transform: scale(1.2);
+    }
+
+    .clickable {
+        cursor: pointer;
+    }
+
+    #score-label {
+        width: fit-content;
+        line-height: 70px;
+        position: absolute;
+        font-size: calc(2vw + 1.3em);
+        color: rgb(255, 231, 93);
+        text-shadow: 0px 0px 8px rgb(255 0 0);
+        z-index: 2!important;
+    }
+
+    .flex-container {
+        display: flex;
+        justify-content: space-between;
+        padding: 2%;
+        z-index: 2;
+    }
+
+    #balls-icon {
+        position: relative;
+        width: 100px;
+        z-index: 2!important;
+    }
+
+    #balls-label {
+        position: relative;
+        font-size: 80px;
+        color: #0035ff;
+        text-shadow: 2px 2px black;
+        z-index: 2!important;
+    }
+
+    #score-title-label {
+        font-size: 20px;
+        z-index: 2!important;
+    }
+
+    #balls-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: fit-content;
+        z-index: 2!important;
+    }
+
+    #vignette-overlay {
+        -webkit-box-align: center;
+        -webkit-box-pack: center;
+        transition: 0.25s opacity;
+        background: -webkit-radial-gradient(circle, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.1) 65%, rgba(0, 0, 0, 0.55));
+        bottom: 0;
+        display: -webkit-box;
+        left: 0;
+        padding: 15px;
+        padding-bottom: 130px;
+        position: fixed;
+        background-position: center;
+        right: 0;
+        top: 0;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    @media (min-width:1025px) {
+        #vignette-overlay {
+            backdrop-filter: blur(1px) invert(0);
+            -webkit-mask: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 42%, rgba(0, 0, 0, 0) 58%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 1) 100%);
+            mask: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 38%, rgba(0, 0, 0, 0) 62%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 1) 100%);
+        }
+    }
+</style>
