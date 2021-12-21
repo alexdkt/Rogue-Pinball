@@ -10,6 +10,7 @@ Classic Pinball game made with Rogue Engine, a ThreeJS based game engine created
  - Create an Audiomanager to manage all audio files and their playback.
  - Improve the bounce of the ball with flippers when they move, still not very natural.
  - Most of the materials are MeshStandardMaterial, in some cases other materials with better performance can be used.
+ - Static UI files works in browser, but Rogue can't find them inside the Editor
 
 # Instructions
 * Clone this project.
