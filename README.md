@@ -1,7 +1,7 @@
 # Rogue-Pinball#
 Classic Pinball game made with Rogue Engine, a ThreeJS based game engine created by @BeardScript
 
-# <img alt="pongRogueEngine" src="https://i.imgur.com/sCqaCxW.mp4">
+# <video alt="pinballRogueEngine" src="https://i.imgur.com/sCqaCxW.mp4">
 
 # TODO#
 
@@ -11,6 +11,7 @@ Classic Pinball game made with Rogue Engine, a ThreeJS based game engine created
  - Improve the bounce of the ball with flippers when they move, still not very natural.
  - Most of the materials are MeshStandardMaterial, in some cases other materials with better performance can be used.
  - Static UI files works in browser, but Rogue can't find them inside the Editor
+ - Better management of load times so that the creation of the scene is not seen before the title
 
 # Instructions
 * Clone this project.
