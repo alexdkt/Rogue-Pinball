@@ -46,9 +46,16 @@ export default class GameLogic extends RE.Component {
 
     // Handles when the player clicks the start playing UI button
     this.uiManager.onPressPlay(() => {
+      
       this.startGame();
       this.playAudio();
-      this.ballController.setMassEnabled(true);
+
+      // Enables mass of ball
+      // I'm using a timeout because sometimes if the mass of the ball is enabled very soon, it leaves the playing area (it does not collide correctly with walls).
+      // TODO: Check the time out, I don't like it at all!
+      setTimeout(() => {
+        this.ballController.setMassEnabled(true);
+      }, 1000)
     })
 
     // Handles when the user loses a ball. TODO: Avoid ballBody dependency and create an onCollide callback in BallController
@@ -69,7 +76,7 @@ export default class GameLogic extends RE.Component {
 
       }
     })
-    
+
 
     // Handles when lamps detect a collision with the ball
     Lamp.onHit = (score: number) => {

@@ -31,7 +31,7 @@ export default class Ball extends RE.Component {
     this.initPosition = new Vec3(this.object3d.position.x, this.object3d.position.y, this.object3d.position.z);
     this._mass = this.bodyComponent.mass;
 
-    // We remove the mass of the object as soon as we start so that it does not move until it all pinball colliders are ready
+    // We remove the mass of the object as soon as we start so that it does not move until all pinball colliders are ready
     this.setMassEnabled(false);
   }
 

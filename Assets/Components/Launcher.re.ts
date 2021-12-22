@@ -5,7 +5,7 @@
 
 import * as RE from 'rogue-engine';
 import CannonBody from 'Assets/rogue_packages/rogue-cannon/Components/CannonBody.re';
-import { Object3D, Audio, GreaterEqualStencilFunc } from 'three';
+import { Object3D, Audio } from 'three';
 import { Vec3 } from 'cannon-es';
 import GameLogic from './GameLogic.re';
 const { Prop } = RE;
@@ -47,7 +47,7 @@ export default class Launcher extends RE.Component {
       if (body?.name != "CannonBall")
         return;
 
-      // Keep ballBody object becouse in "endContact" callback the bodyA and bodyB fields always are null.  
+      // Keep ballBody object because in "endContact" callback the bodyA and bodyB fields always are null.  
       // Maybe related with: https://github.com/pmndrs/cannon-es/issues/97
       if (!this.ballBody)
         this.ballBody = body;
