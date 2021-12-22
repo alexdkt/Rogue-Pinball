@@ -51,10 +51,10 @@
         align-items: center;
         width: 100%;
         height: 100%;
-        background-color: #e5e5f7;
+        background-color: #31315e;
         opacity: 1;
         background-image: url("./Static/ball-background-icon.png");
-        /* radial-gradient(#444cf7 1.6px, #e5e5f7 1.6px);*/
+        background-blend-mode: multiply;
         background-size: 32px 32px;
         animation: animatedBackground 500s linear infinite;
     }
@@ -94,7 +94,7 @@
         font-size: calc(2vw + 1.3em);
         color: rgb(255, 231, 93);
         text-shadow: 0px 0px 8px rgb(255 0 0);
-        z-index: 2!important;
+        z-index: 2 !important;
     }
 
     .flex-container {
@@ -107,7 +107,7 @@
     #balls-icon {
         position: relative;
         width: 100px;
-        z-index: 2!important;
+        z-index: 2 !important;
     }
 
     #balls-label {
@@ -115,12 +115,12 @@
         font-size: 80px;
         color: #0035ff;
         text-shadow: 2px 2px black;
-        z-index: 2!important;
+        z-index: 2 !important;
     }
 
     #score-title-label {
         font-size: 20px;
-        z-index: 2!important;
+        z-index: 2 !important;
     }
 
     #balls-container {
@@ -128,7 +128,7 @@
         flex-direction: row;
         justify-content: flex-end;
         width: fit-content;
-        z-index: 2!important;
+        z-index: 2 !important;
     }
 
     #vignette-overlay {
