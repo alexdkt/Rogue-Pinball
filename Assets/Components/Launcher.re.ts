@@ -24,7 +24,7 @@ export default class Launcher extends RE.Component {
   private ballBody: CannonBody;
   private launcherTriggerBody: CannonBody;
   private launcherInitialPositionZ: number;
-  private launcherSpeedMovement: number = 0.001;
+  private launcherSpeedMovement: number = 0.1;
   private isBallColliding: boolean = true;
   private timeBallEntersLauncherArea = 0;
   private safeTimeBallLeavesLauncherArea: number = 1;
@@ -82,7 +82,7 @@ export default class Launcher extends RE.Component {
 
       // pulls the launcher back
       if (this.launcherGeo.position.z < this.launcherMaxZ) {
-        this.launcherGeo.translateZ(this.launcherSpeedMovement);
+        this.launcherGeo.translateZ(this.launcherSpeedMovement * RE.Runtime.deltaTime);
       }
     }
 
