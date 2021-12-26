@@ -93,8 +93,7 @@ export default class Launcher extends RE.Component {
       var force = totalMovement * this.force;
       this.launcherGeo.position.z = this.launcherInitialPositionZ;
 
-      const dt = RE.Runtime.deltaTime;
-      const impulse = new Vec3(0, 0, force * dt);
+      const impulse = new Vec3(0, 0, force);
       this.ballBody.body.applyImpulse(impulse)
 
       this.playAudio();
