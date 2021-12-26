@@ -29,8 +29,6 @@ export default class Launcher extends RE.Component {
   private timeBallEntersLauncherArea = 0;
   private safeTimeBallLeavesLauncherArea: number = 1;
 
-
-
   awake() {
     this.launcherTriggerBody = RE.getComponent(CannonBody, this.launcherTrigger) as CannonBody;
   }

@@ -1,7 +1,7 @@
 <div id="pinball-ui">
     <div id="start-game-ui" class="menu">
         <div id="game-title">Rogue Pinball</div>
-        <img src="./Static/button-Play.png" id="start-game-button" class="clickable"></img>
+        <img id="start-game-button"></img>
         <div id="progress-bar-wrapper">
             <div id='progress-bar-container'>
                 <div id='progress-bar'></div>
@@ -78,18 +78,16 @@
 
 
     #start-game-button {
+        content: url("./Static/button-Play.png");
         position: relative;
         display: none;
         width: 20vh;
         transition: 0.3s;
+        cursor: pointer;
     }
 
     #start-game-button:hover {
         transform: scale(1.2);
-    }
-
-    .clickable {
-        cursor: pointer;
     }
 
     #score-label {
