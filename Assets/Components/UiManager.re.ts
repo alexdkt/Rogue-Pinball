@@ -4,17 +4,33 @@
  */
 
 import * as RE from 'rogue-engine';
+import { DefaultLoadingManager } from 'three';
+import DeviceUtils from './Static/DeviceUtils';
+
+const { Prop } = RE;
 
 export default class UiManager extends RE.Component {
+
+  // Public component fields
+  @Prop("Boolean") autoPlayInEditor: Boolean = false;
 
   // Private vars
   private startGameUi: HTMLDivElement;
   private inGameUi: HTMLDivElement;
   private ballsLabel: HTMLDivElement;
   private scoreLabel: HTMLDivElement;
+  private startGameButton: HTMLDivElement;
+  private progressBarContainer: HTMLDivElement;
+  private progressBar: HTMLDivElement;
   private onPressPlayCallback: (() => void)[] = [];
   
-  start() {
+  awake() {
+    if (!DeviceUtils.isValidBrowser()) {
+      this.showNonSupportedDeviceScreen();
+      RE.Runtime.stop();
+      return;
+    }
+
     this.initUI();
   }
 
@@ -31,13 +47,32 @@ export default class UiManager extends RE.Component {
     this.ballsLabel = document.getElementById("balls-label") as HTMLDivElement;
     this.scoreLabel = document.getElementById("score-label") as HTMLDivElement;
 
-    const startGameButton = document.getElementById("start-game-button") as HTMLDivElement;
+    this.progressBarContainer = document.getElementById("progress-bar-container") as HTMLDivElement;
+    this.progressBar = document.getElementById("progress-bar") as HTMLDivElement;
 
-    startGameButton.onclick = () => this.onPressStartButton();
+    this.startGameButton = document.getElementById("start-game-button") as HTMLDivElement;
+
+    this.startGameButton.onclick = () => this.onPressStartButton();
 
     this.showStartGameUi();
+
+    // Creating listeners for THREEJS Loading Manager
+    DefaultLoadingManager.onProgress = (url, itemsLoaded, itemsTotal) => {
+      this.progressBar.style.width = (itemsLoaded / itemsTotal * 100) + '%';
+    }
+
+    // We show the startGamebutton only when everything is loaded correctly.
+    // This way we avoid an error in Firefox if the button was clicked before the full load of the game.
+    DefaultLoadingManager.onLoad = () => {
+      this.progressBarContainer.style.display = "none";
+      this.startGameButton.style.display = "block";
+
+      if (this.autoPlayInEditor && DeviceUtils.isRogueEditor())
+        this.onPressStartButton();
+    }
    
   }
+
 
   showStartGameUi() {
     this.setDivEnabled(this.startGameUi, true, "flex");
@@ -73,6 +108,13 @@ export default class UiManager extends RE.Component {
     for (const callback of this.onPressPlayCallback) {
       callback();
     }
+  }
+
+  showNonSupportedDeviceScreen() {
+    var divNonSupported = document.createElement("div");
+    divNonSupported.innerHTML = "Browser not supported. We recommend Chrome or Firefox on Desktop";
+    divNonSupported.style.cssText = "text-align: center;top: 40%;position: relative;font-size: xx-large;color: white;";
+    document.body.insertBefore(divNonSupported, document.body.firstChild);
   }
 }
 

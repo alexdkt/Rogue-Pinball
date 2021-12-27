@@ -24,12 +24,10 @@ export default class Launcher extends RE.Component {
   private ballBody: CannonBody;
   private launcherTriggerBody: CannonBody;
   private launcherInitialPositionZ: number;
-  private launcherSpeedMovement: number = 0.001;
+  private launcherSpeedMovement: number = 0.1;
   private isBallColliding: boolean = true;
   private timeBallEntersLauncherArea = 0;
   private safeTimeBallLeavesLauncherArea: number = 1;
-
-
 
   awake() {
     this.launcherTriggerBody = RE.getComponent(CannonBody, this.launcherTrigger) as CannonBody;
@@ -82,7 +80,7 @@ export default class Launcher extends RE.Component {
 
       // pulls the launcher back
       if (this.launcherGeo.position.z < this.launcherMaxZ) {
-        this.launcherGeo.translateZ(this.launcherSpeedMovement);
+        this.launcherGeo.translateZ(this.launcherSpeedMovement * RE.Runtime.deltaTime);
       }
     }
 
@@ -93,8 +91,7 @@ export default class Launcher extends RE.Component {
       var force = totalMovement * this.force;
       this.launcherGeo.position.z = this.launcherInitialPositionZ;
 
-      const dt = RE.Runtime.deltaTime;
-      const impulse = new Vec3(0, 0, force * dt);
+      const impulse = new Vec3(0, 0, force);
       this.ballBody.body.applyImpulse(impulse)
 
       this.playAudio();

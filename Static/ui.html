@@ -1,7 +1,12 @@
 <div id="pinball-ui">
     <div id="start-game-ui" class="menu">
         <div id="game-title">Rogue Pinball</div>
-        <img src="./Static/button-Play.png" id="start-game-button" class="clickable"></img>
+        <div id="start-game-button"></div>
+        <div id="progress-bar-wrapper">
+            <div id='progress-bar-container'>
+                <div id='progress-bar'></div>
+            </div>
+        </div>
     </div>
 
     <div id="in-game-ui">
@@ -18,7 +23,7 @@
     </div>
 </div>
 
-<div id="vignette-overlay"></div>
+<!--div id="vignette-overlay"></div-->
 
 <style>
     #pinball-ui {
@@ -73,18 +78,17 @@
 
 
     #start-game-button {
+        content: url("./Static/button-Play.png");
         position: relative;
-        display: block;
+        display: none;
         width: 20vh;
         transition: 0.3s;
+        cursor: pointer;
     }
+
 
     #start-game-button:hover {
         transform: scale(1.2);
-    }
-
-    .clickable {
-        cursor: pointer;
     }
 
     #score-label {
@@ -155,5 +159,32 @@
             -webkit-mask: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 42%, rgba(0, 0, 0, 0) 58%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 1) 100%);
             mask: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 38%, rgba(0, 0, 0, 0) 62%, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 1) 100%);
         }
+    }
+
+    #progress-bar-container {
+        position: absolute;
+        display: inline-block;
+        width: 50%;
+        height: 3vh;
+        background: rgba(74, 66, 91, 0.5);
+        border-radius: 25px;
+        transform: translate(-50%, -50%);
+        -moz-transform: translateX(-50%) translateY(-50%);
+        -webkit-transform: translateX(-50%) translateY(-50%);
+    }
+
+    #progress-bar-container>#progress-bar {
+        width: 0px;
+        height: 3vh;
+        border-radius: 25px;
+        background: rgb(255 255 255 / 50%);
+        border: none;
+    }
+
+    #progress-bar-wrapper {
+        text-align: center;
+        position: relative;
+        width: 100%;
+        padding: 3vh;
     }
 </style>
