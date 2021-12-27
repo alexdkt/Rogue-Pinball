@@ -19,7 +19,7 @@ export default class UiManager extends RE.Component {
   private progressBar: HTMLDivElement;
   private onPressPlayCallback: (() => void)[] = [];
   
-  start() {
+  awake() {
     if (!DeviceUtils.isValidBrowser()) {
       this.showNonSupportedDeviceScreen();
       RE.Runtime.stop();
