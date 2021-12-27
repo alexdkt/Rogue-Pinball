@@ -109,8 +109,10 @@ export default class DeviceUtils {
 
         var isChromeOnDesktop = this.isNavigator("Chrome") && !this.isMobile();
         var isFirefoxOnDesktop = this.isNavigator("Firefox") && !this.isMobile();
+        var isOperaOnDesktop = this.isNavigator("OPR") && !this.isMobile();
+        var isEdgeOnDesktop = this.isNavigator("Edg") && !this.isMobile();
         
-        return (isChromeOnDesktop || isFirefoxOnDesktop);
+        return (isChromeOnDesktop || isFirefoxOnDesktop || isOperaOnDesktop || isEdgeOnDesktop);
     }
 
 }
