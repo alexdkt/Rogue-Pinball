@@ -94,6 +94,10 @@ export default class DeviceUtils {
         return (!this.isNavigator("Chrome") && this.isNavigator("Safari")) && this.isMobile();
     }
 
+    static isRogueEditor() {
+        return this.isNavigator("RogueEngine");
+    }
+
     static isiOS() {
         return [
             'iPad Simulator',

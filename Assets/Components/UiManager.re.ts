@@ -7,7 +7,12 @@ import * as RE from 'rogue-engine';
 import { DefaultLoadingManager } from 'three';
 import DeviceUtils from './Static/DeviceUtils';
 
+const { Prop } = RE;
+
 export default class UiManager extends RE.Component {
+
+  // Public component fields
+  @Prop("Boolean") autoPlayInEditor: Boolean = false;
 
   // Private vars
   private startGameUi: HTMLDivElement;
@@ -61,6 +66,9 @@ export default class UiManager extends RE.Component {
     DefaultLoadingManager.onLoad = () => {
       this.progressBarContainer.style.display = "none";
       this.startGameButton.style.display = "block";
+
+      if (this.autoPlayInEditor && DeviceUtils.isRogueEditor())
+        this.onPressStartButton();
     }
    
   }
