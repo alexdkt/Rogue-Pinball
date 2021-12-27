@@ -5,6 +5,7 @@
 
 import * as RE from 'rogue-engine';
 import { DefaultLoadingManager } from 'three';
+import DeviceUtils from './Static/DeviceUtils';
 
 export default class UiManager extends RE.Component {
 
@@ -19,6 +20,12 @@ export default class UiManager extends RE.Component {
   private onPressPlayCallback: (() => void)[] = [];
   
   start() {
+    if (!DeviceUtils.isValidBrowser()) {
+      this.showNonSupportedDeviceScreen();
+      RE.Runtime.stop();
+      return;
+    }
+
     this.initUI();
   }
 
@@ -93,6 +100,13 @@ export default class UiManager extends RE.Component {
     for (const callback of this.onPressPlayCallback) {
       callback();
     }
+  }
+
+  showNonSupportedDeviceScreen() {
+    var divNonSupported = document.createElement("div");
+    divNonSupported.innerHTML = "Browser not supported. We recommend Chrome or Firefox on Desktop";
+    divNonSupported.style.cssText = "text-align: center;top: 40%;position: relative;font-size: xx-large;color: white;";
+    document.body.insertBefore(divNonSupported, document.body.firstChild);
   }
 }
 
